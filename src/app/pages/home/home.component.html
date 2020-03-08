@@ -1,0 +1,84 @@
+<div>
+  <form style="width: 700px; margin: 0 auto" [formGroup]="checkoutForm">
+    <h1 style="text-align: center; font-size: 38px; padding: 20px 0 10px 0; margin: 0; font-weight: normal">WebDAV GUI</h1>
+
+    <div style="display: flex; justify-content: space-between;">
+      <!-- Path -->
+      <mat-form-field style="width: 48%" (click)="getPath()">
+        <mat-label>Path</mat-label>
+        <input aria-label="" matInput placeholder="Path" formControlName="path">
+        <mat-icon matSuffix>folder</mat-icon>
+      </mat-form-field>
+      <!-- rights -->
+      <mat-form-field style="width: 48%">
+        <mat-label>Rights</mat-label>
+        <mat-select multiple style="width: 100%" formControlName="rights">
+          <mat-option *ngFor="let item of this.webdavCliRights" [value]="item">{{ item }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div style="display: flex; justify-content: space-between">
+      <!-- Host -->
+      <mat-form-field style="width: 48%">
+        <mat-label>Host</mat-label>
+        <input aria-label="" matInput placeholder="Host" formControlName="host">
+      </mat-form-field>
+      <!-- Port -->
+      <mat-form-field style="width: 48%">
+        <mat-label>Port</mat-label>
+        <input aria-label="" matInput placeholder="Port" formControlName="port">
+      </mat-form-field>
+    </div>
+    <div style="display: flex; justify-content: space-between">
+      <!-- Username -->
+      <mat-form-field style="width: 48%">
+        <mat-label>Username</mat-label>
+        <input aria-label="" matInput placeholder="Username" formControlName="username">
+      </mat-form-field>
+      <!-- Password -->
+      <mat-form-field style="width: 48%">
+        <mat-label>Password</mat-label>
+        <input aria-label="" matInput placeholder="Password" formControlName="password">
+      </mat-form-field>
+    </div>
+    <div style="display: flex; justify-content: space-between">
+      <!-- SSL Key -->
+      <mat-form-field style="width: 48%" (click)="getSSLKey()">
+        <mat-label>SSL Key</mat-label>
+        <input aria-label="" matInput placeholder="optional" formControlName="sslKey">
+        <mat-icon matSuffix>attach_file</mat-icon>
+      </mat-form-field>
+      <!-- SSL Cert -->
+      <mat-form-field style="width: 48%" (click)="getSSLCert()">
+        <mat-label>SSL Cert</mat-label>
+        <input aria-label="" matInput placeholder="optional" formControlName="sslCert">
+        <mat-icon matSuffix>attach_file</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div style="display: flex; justify-content: space-between">
+      <!-- ssl -->
+      <div style="width: 48%;">
+        <div style="width: 100%; display: flex; justify-content: space-between; padding: 5px 0;">
+          <mat-checkbox formControlName="ssl">Enable SSL</mat-checkbox>
+          <mat-checkbox formControlName="digest">Enable Digest</mat-checkbox>
+        </div>
+        <mat-divider></mat-divider>
+      </div>
+      <!-- button -->
+      <div style="width: 48%">
+        <ng-container *ngIf="!this.webdavCliServer">
+          <button mat-stroked-button style="width: 100%" color="primary" (click)="onWebdavStart(checkoutForm.value)">Start</button>
+        </ng-container>
+        <ng-container *ngIf="this.webdavCliServer">
+          <button mat-stroked-button style="width: 100%" color="accent" (click)="onWebdavStop()">Stop</button>
+        </ng-container>
+      </div>
+    </div>
+    <br>
+    <div style="border: 1px solid #ccc; height: 170px; padding: 16px; overflow: auto; font-size: 12px; font-family: monospace" #logsRef>
+      <div *ngFor="let log of logs;">{{ log }}</div>
+    </div>
+  </form>
+</div>
