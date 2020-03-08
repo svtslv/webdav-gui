@@ -4,7 +4,8 @@
 
 - [Description](#description)
 - [Screenshots](#screenshots)
-- [Installation](#installation)
+- [Download](#download)
+- [Build](#build)
 - [License](#license)
 
 ## Description
@@ -15,7 +16,11 @@ WebDAV Server for MacOS, Windows and Linux
 
 ![](https://github.com/svtslv/webdav-gui/raw/master/screenshots/public.png)
 
-## Installation
+## Download
+
+Download `WebDAV GUI` from the latest [release](https://github.com/svtslv/webdav-gui/releases/latest)
+
+## Build
 
 ```bash
 git clone https://github.com/svtslv/webdav-gui
